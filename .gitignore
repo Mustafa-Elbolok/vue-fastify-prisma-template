@@ -2,7 +2,7 @@
 **/node_modules
 
 # build destinations
-**/dist
+# **/dist
 **/build
 
 # Environment configuration
