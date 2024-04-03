@@ -24,5 +24,5 @@ RUN npm run db:migrate
 RUN npm run db:seed
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 10000
 CMD ["npm", "start"]

@@ -14,7 +14,7 @@ async function bootstrap(port: number, host: string) {
 
 async function main() {
     try {
-        const PORT = !isNaN(Number(process.env.PORT)) ? Number(process.env.PORT) : 3000;
+        const PORT = !isNaN(Number(process.env.PORT)) ? Number(process.env.PORT) : 10000;
         setup(app);
         await bootstrap(PORT, '0.0.0.0');
         console.log(`🚀 Server is ready at 0.0.0.0:${PORT}`);
