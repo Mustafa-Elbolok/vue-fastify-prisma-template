@@ -1,0 +1,13 @@
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@simple.com",
+    "password": "admin123"
+}
+
+###
+
+GET http://localhost:5000/api/category HTTP/1.1
+Content-Type: application/json
+Cookie: ST=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOjEsImlhdCI6MTcxMTg5ODkzMSwiZXhwIjoxNzExOTg1MzMxfQ.ZryJ1TXIbDMpPURGmT7wWIyuawJtNaQgIYr3ph5Zmcg.z2rah%2B0ObCPCXxPY2ATtxpOoj1IBX%2BFq8ebI1mVmSJY; Path=/; Expires=Mon, 01 Apr 2024 15:28:51 GMT; HttpOnly; Secure; SameSite=Lax

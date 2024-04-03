@@ -1,0 +1,16 @@
+# Packages
+**/node_modules
+
+# build destinations
+**/dist
+**/build
+
+# Environment configuration
+**/.env
+**/*.env
+**/*.pem
+
+*.test.json
+**/*.test.json
+**/*.origins.json
+**/migrations

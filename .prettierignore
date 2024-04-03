@@ -1,0 +1,16 @@
+# Distentions
+node_modules
+*/node_modules
+
+# Files
+.env
+*/.env
+*/*.env
+
+# Git files
+
+.gitignore
+*/.gitignore
+.gitattributes
+*/.gitattributes
+

@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+  shadowDatabase = false
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Category {
+  id            Int        @id @default(autoincrement())
+  name          String     @db.VarChar(255)
+  level         Int        @default(1)
+  parent_id     Int?
+  category      Category?  @relation("SubCategories", fields: [parent_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  subCategories Category[] @relation("SubCategories")
+  products      Product[]  @relation("categoryProducts")
+  picture       String     @db.VarChar(500)
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+
+  @@unique([name, parent_id], name: "UniqueSubCategoryName")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  picture     String   @db.VarChar(500)
+  category_id Int
+  category    Category @relation("categoryProducts", fields: [category_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique @db.VarChar(50)
+  password     String   @db.VarChar(72)
+  role         String   @default("admin")
+  confirmed_at DateTime @default(now())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}

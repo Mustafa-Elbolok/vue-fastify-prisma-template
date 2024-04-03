@@ -1,0 +1,10 @@
+declare module 'fastify-auth';
+declare module 'fastify-helmet';
+declare module 'fastify-formbody';
+declare module 'fastify-cors';
+declare module 'fastify-multipart';
+declare module 'fastify-jwt';
+declare module 'fastify-plugin';
+declare module 'fastify-now';
+declare module 'fastify-autoload';
+declare module 'fastify-cli';

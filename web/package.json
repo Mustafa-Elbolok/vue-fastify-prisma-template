@@ -1,0 +1,37 @@
+{
+    "name": "web",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "author": "Mustafa Elbolok (callmekmo1@gmail.com)",
+    "license": "ISC",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "balm-ui": "^10.28.2",
+        "filepond": "^4.30.6",
+        "filepond-plugin-file-validate-type": "^1.2.9",
+        "filepond-plugin-image-preview": "^4.6.12",
+        "vue": "^3.4.21",
+        "vue-filepond": "^7.0.4",
+        "vue-toast-notification": "^3.1.2"
+    },
+    "devDependencies": {
+        "@babel/eslint-parser": "^7.24.1",
+        "@vitejs/plugin-vue": "^5.0.4",
+        "autoprefixer": "^10.4.19",
+        "axios": "^1.6.8",
+        "eslint": "^8.57.0",
+        "eslint-plugin-vue": "^9.24.0",
+        "pinia": "^2.1.7",
+        "tailwindcss": "^3.4.3",
+        "typescript": "^5.2.2",
+        "vite": "^5.2.0",
+        "vue-loader": "^17.4.2",
+        "vue-router": "^4.3.0",
+        "vue-tsc": "^2.0.6"
+    }
+}
