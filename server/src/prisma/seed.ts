@@ -1,8 +1,8 @@
 /** @format */
 
-import { PrismaClient } from '@prisma/client';
-import hasher from '../helpers/hasher.ts';
-import data from '../dummy.test.json' with { type: 'json' };
+const { PrismaClient } = require('@prisma/client');
+const { hashSync } = require('bcryptjs');
+const data = require('../dummy.test.json');
 
 const prisma = new PrismaClient();
 const { users, categories, products } = data;
@@ -16,7 +16,7 @@ async function seed() {
             update: {},
             create: {
                 email: admin.email,
-                password: hasher.gen(admin.password),
+                password: hashSync(admin.password, 9),
             },
         });
         console.timeLog('Seeding database', 'Created users successfully');

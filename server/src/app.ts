@@ -26,9 +26,7 @@ import fastifyMultipart from '@fastify/multipart';
 import path from 'path';
 import fastifyStatic from '@fastify/static';
 import isAllowedOrigin from './helpers/isAllowedOrigin';
-import { existsSync, fsync, readdirSync, readFileSync, readSync } from 'fs';
-import { fileURLToPath } from 'url';
-import getAssetType from './helpers/getAssetType';
+import { readFileSync } from 'fs';
 
 export type Fastify = FastifyInstance<
     RawServerDefault,
@@ -50,12 +48,20 @@ export type Reply = FastifyReply;
 
 const appOptions: FastifyHttpOptions<RawServerDefault, Logger> = {};
 
-if (process.env.NODE_ENV == 'production') appOptions.logger = pino({ level: 'trace' });
+appOptions.logger = pino({ level: 'trace' });
 
 class App {
     #app: Fastify;
     constructor() {
-        this.#app = fastify(appOptions).withTypeProvider<TypeBoxTypeProvider>();
+        //@ts-ignore
+        this.#app = fastify({
+            //@ts-ignore
+            https: {
+                key: readFileSync('./localhost+1-key.pem'),
+                cert: readFileSync('./localhost+1.pem'),
+            },
+            ...appOptions,
+        }).withTypeProvider<TypeBoxTypeProvider>();
     }
     get app() {
         return this.#app;
@@ -68,7 +74,6 @@ class App {
         app.register(fastifyMultipart);
         app.register(fastifyStatic, {
             root: path.join(path.dirname('/'), '/src/public'),
-            prefix: '/public/',
         });
         app.register(fastifyCors, {
             origin: (origin, cb) => cb(null, isAllowedOrigin(origin ?? '')),
@@ -86,20 +91,14 @@ class App {
             hook: 'onRequest',
             parseOptions: {},
         });
-        app.register(fastifyHelmet);
-        app.register(initRouter);
-
-        app.get('*', async (request, reply) => {
-            const path = './src/public/' + request.url;
-            if (existsSync(path)) {
-                const fileContent = readFileSync(path);
-                reply.type(getAssetType(path)).send(fileContent);
-            } else {
-                const path = './src/public/index.html';
-                const fileContent = readFileSync(path, 'utf-8');
-                reply.type('text/html').send(fileContent);
-            }
+        app.register(fastifyHelmet, {
+            contentSecurityPolicy: {
+                directives: {
+                    'img-src': ["'self'", 'data:', 'blob:'],
+                },
+            },
         });
+        app.register(initRouter);
 
         app.setNotFoundHandler((request, reply) => {
             const path = './src/public/index.html';

@@ -5,6 +5,7 @@ export default function(path: string){
         case 'png': return 'image/png';
         case 'jpeg': return 'image/jpeg';
         case 'svg': return 'image/svg+xml';
+        case 'html': return 'text/html';
         default: return 'text/plain';
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "simple server for creating/updating/deleting categories and apis using express mysql and prisma",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "test:watch": "ts-jest --watch",
     "test:e2e": "ts-jest --config ./jest-e2e.json"
   },
-  "type": "module",
   "author": "Mustafa Elbolok (callmekmo1@gmail.com)",
   "license": "ISC",
   "dependencies": {

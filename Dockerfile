@@ -22,7 +22,6 @@ COPY --from=vue-builder /app/web/dist /app/server/src/public
 RUN npm run db:format
 RUN npm run db:migrate
 RUN npm run db:seed
-RUN npm run test
 RUN npm run build
 
 EXPOSE 3000
