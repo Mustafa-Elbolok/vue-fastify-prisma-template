@@ -6,9 +6,9 @@
 **/build
 
 # Environment configuration
-**/.env
-**/*.env
-**/*.pem
+# **/.env
+# **/*.env
+# **/*.pem
 
 # *.test.json
 # **/*.test.json
