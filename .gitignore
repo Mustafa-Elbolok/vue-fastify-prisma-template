@@ -12,5 +12,5 @@
 
 *.test.json
 **/*.test.json
-**/*.origins.json
-**/migrations
+# **/*.origins.json
+# **/migrations
