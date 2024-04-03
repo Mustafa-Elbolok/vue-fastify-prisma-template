@@ -10,7 +10,7 @@
 **/*.env
 **/*.pem
 
-*.test.json
-**/*.test.json
+# *.test.json
+# **/*.test.json
 # **/*.origins.json
 # **/migrations
