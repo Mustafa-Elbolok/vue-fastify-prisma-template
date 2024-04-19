@@ -33,13 +33,3 @@ model Product {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
-
-model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique @db.VarChar(50)
-  password     String   @db.VarChar(72)
-  role         String   @default("admin")
-  confirmed_at DateTime @default(now())
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
-}

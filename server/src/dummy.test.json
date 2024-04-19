@@ -1,10 +1,4 @@
 {
-    "users": {
-        "admin": {
-            "email": "admin@simple.com",
-            "password": "admin123"
-        }
-    },
     "hosting": {
         "host": "localhost",
         "port": 6000

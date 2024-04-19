@@ -2,22 +2,14 @@
 import { useRouter } from 'vue-router';
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import { watchEffect } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useAuth } from './framework/store/auth';
-import http from './framework/utils/http';
 
 const router = useRouter();
-const { isAdmin } = storeToRefs(useAuth());
-
-http.get('/me').then((res) => {
-    if (res) useAuth().login(res.data.data.user);
-});
 
 watchEffect(() => {
-    const { path, meta } = router.currentRoute.value;
-    if (path == '/dashboard/login' && isAdmin.value) router.push('/dashboard');
+    const { path } = router.currentRoute.value;
+    if (path == '/dashboard/login') router.push('/dashboard');
 
-    if (meta.requiresAuth && !isAdmin.value) router.push('/dashboard/login');
+    // if (meta.requiresAuth && !isAdmin.value) router.push('/dashboard/login');
 });
 </script>
 

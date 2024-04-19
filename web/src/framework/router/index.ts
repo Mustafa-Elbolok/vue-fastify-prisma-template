@@ -20,44 +20,33 @@ const routes = [
     },
     {
         path: '/dashboard',
-        component: () => import('../../pages/AdminDashboard.vue'),
-        meta: { requiresAuth: true }
-    },
-    {
-        path: '/dashboard/login',
-        component: () => import('../../pages/LoginPage.vue')
+        component: () => import('../../pages/AdminDashboard.vue')
     },
     {
         path: '/dashboard/categories',
-        component: () => import('../../pages/DashboardCategoriesPage.vue'),
-        meta: { requiresAuth: true }
+        component: () => import('../../pages/DashboardCategoriesPage.vue')
     },
     {
         path: '/dashboard/categories/create',
-        component: () => import('../../pages/CreateCategoryPage.vue'),
-        meta: { requiresAuth: true }
+        component: () => import('../../pages/CreateCategoryPage.vue')
     },
     {
         path: '/dashboard/categories/:id',
         component: () => import('../../pages/EditCategoryPage.vue'),
-        props: true,
-        meta: { requiresAuth: true }
+        props: true
     },
     {
         path: '/dashboard/products',
-        component: () => import('../../pages/DashboardProductsPage.vue'),
-        meta: { requiresAuth: true }
+        component: () => import('../../pages/DashboardProductsPage.vue')
     },
     {
         path: '/dashboard/products/create',
-        component: () => import('../../pages/CreateProductPage.vue'),
-        meta: { requiresAuth: true }
+        component: () => import('../../pages/CreateProductPage.vue')
     },
     {
         path: '/dashboard/products/:id',
         component: () => import('../../pages/EditProductPage.vue'),
-        props: true,
-        meta: { requiresAuth: true }
+        props: true
     }
 ];
 

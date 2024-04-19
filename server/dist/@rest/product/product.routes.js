@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const authorization_1 = __importDefault(require("../../hooks/authorization"));
 const product_schema_1 = __importDefault(require("./product.schema"));
 const product_service_1 = __importDefault(require("./product.service"));
 const productService = new product_service_1.default();
@@ -28,8 +27,6 @@ function productsRouter(app) {
 function productsActionsRouter(app) {
     return __awaiter(this, void 0, void 0, function* () {
         app.decorateRequest('productsActionsRouter', '');
-        const authorizationHook = new authorization_1.default();
-        app.addHook('onRequest', authorizationHook.verify);
         app.post('/', { schema: product_schema_1.default.createProduct }, productService.createProduct);
         app.put('/:id', { schema: product_schema_1.default.updateProduct }, productService.updateProduct);
         app.delete('/:id', { schema: product_schema_1.default.removeProduct }, productService.removeProduct);

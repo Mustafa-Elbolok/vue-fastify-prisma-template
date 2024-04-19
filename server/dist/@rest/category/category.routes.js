@@ -29,7 +29,6 @@ function categoriesActionsRouter(app) {
     return __awaiter(this, void 0, void 0, function* () {
         app.decorateRequest('categoriesActionsRouter', '');
         const authorizationHook = new authorization_1.default();
-        app.addHook('onRequest', authorizationHook.verify);
         app.post('/', { schema: category_schema_1.default.createCategory }, categoryService.createCategory);
         app.put('/:id', { schema: category_schema_1.default.updateCategory }, categoryService.updateCategory);
         app.delete('/:id', {

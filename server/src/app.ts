@@ -4,7 +4,6 @@ import fastifyFormbody from '@fastify/formbody';
 import fastifyCors from '@fastify/cors';
 import fastifyHelmet from '@fastify/helmet';
 import fastifyCookie from '@fastify/cookie';
-import fastifyJwt from '@fastify/jwt';
 import fastifyMiddie from '@fastify/middie';
 import pino, { Logger } from 'pino';
 import fastify, {
@@ -78,13 +77,6 @@ class App {
         app.register(fastifyCors, {
             origin: (origin, cb) => cb(null, isAllowedOrigin(origin ?? '')),
             credentials: true,
-        });
-        app.register(fastifyJwt, {
-            secret: process.env.JWT_SECRET as string,
-            cookie: {
-                cookieName: 'ST',
-                signed: true,
-            },
         });
         app.register(fastifyCookie, {
             secret: process.env.COOKIE_SECRET,

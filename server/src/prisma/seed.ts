@@ -5,22 +5,11 @@ const { hashSync } = require('bcryptjs');
 const data = require('../dummy.test.json');
 
 const prisma = new PrismaClient();
-const { users, categories, products } = data;
+const { categories, products } = data;
 
 async function seed() {
     console.time('Seeding database');
     try {
-        const { admin } = users;
-        await prisma.user.upsert({
-            where: { email: admin.email },
-            update: {},
-            create: {
-                email: admin.email,
-                password: hashSync(admin.password, 9),
-            },
-        });
-        console.timeLog('Seeding database', 'Created users successfully');
-
         for (const category of categories) {
             await prisma.category.upsert({
                 where: { id: category.id },

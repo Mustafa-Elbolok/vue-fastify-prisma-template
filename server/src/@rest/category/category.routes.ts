@@ -21,8 +21,6 @@ async function categoriesActionsRouter(app: Fastify) {
 
     const authorizationHook = new AuthorizationHook();
 
-    app.addHook('onRequest', authorizationHook.verify);
-
     app.post('/', { schema: schema.createCategory }, categoryService.createCategory);
     app.put('/:id', { schema: schema.updateCategory }, categoryService.updateCategory);
     app.delete(

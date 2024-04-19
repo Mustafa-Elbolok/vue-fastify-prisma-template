@@ -14,23 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_service_1 = __importDefault(require("./auth.service"));
-const auth_schema_1 = __importDefault(require("./auth.schema"));
 const authorization_1 = __importDefault(require("../../hooks/authorization"));
 const service = new auth_service_1.default();
 const authorization = new authorization_1.default();
 function authRouter(app) {
     return __awaiter(this, void 0, void 0, function* () {
         app.decorateRequest('authRouter', '');
-        app.post('/login', { schema: auth_schema_1.default.login }, service.login);
-        app.post('/confirm', {
-            onRequest: authorization.verify,
-        }, service.confirm);
-        app.get('/me', {
-            onRequest: authorization.verify,
-        }, service.me);
-        app.delete('/logout', {
-            onRequest: authorization.verify,
-        }, service.logout);
+        app.post('/confirm', service.confirm);
     });
 }
 exports.default = authRouter;

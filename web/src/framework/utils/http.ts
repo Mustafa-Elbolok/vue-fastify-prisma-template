@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from 'axios';
-import { useAuth } from '../store/auth';
 
 const restResInterceptor = (res: AxiosResponse) => res;
 
@@ -19,7 +18,6 @@ const http = (
     instance.interceptors.response.use(resInterceptor, ({ response }) => {
         const { error } = response.data;
         if (response.status == 401 || response.status == 403) {
-            useAuth().logout();
             return;
         }
 

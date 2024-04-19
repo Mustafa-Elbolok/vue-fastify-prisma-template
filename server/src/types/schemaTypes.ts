@@ -1,6 +1,6 @@
 /** @format */
 
-import { FormatRegistry, Type } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox';
 
 export type SchemaErrorDetails = {
     as: string;

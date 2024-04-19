@@ -29,7 +29,7 @@ function bootstrap(port, host) {
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const PORT = !isNaN(Number(process.env.PORT)) ? Number(process.env.PORT) : 3000;
+            const PORT = !isNaN(Number(process.env.PORT)) ? Number(process.env.PORT) : 10000;
             setup(app);
             yield bootstrap(PORT, '0.0.0.0');
             console.log(`🚀 Server is ready at 0.0.0.0:${PORT}`);

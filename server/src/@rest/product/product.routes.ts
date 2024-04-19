@@ -1,7 +1,6 @@
 /** @format */
 
 import { Fastify } from '../../app';
-import AuthorizationHook from '../../hooks/authorization';
 import schema from './product.schema';
 import ProductService from './product.service';
 
@@ -18,10 +17,6 @@ async function productsRouter(app: Fastify) {
 
 async function productsActionsRouter(app: Fastify) {
     app.decorateRequest('productsActionsRouter', '');
-
-    const authorizationHook = new AuthorizationHook();
-
-    app.addHook('onRequest', authorizationHook.verify);
 
     app.post('/', { schema: schema.createProduct }, productService.createProduct);
     app.put('/:id', { schema: schema.updateProduct }, productService.updateProduct);

@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
-import http from '../framework/utils/http';
-import { storeToRefs } from 'pinia';
-import { useAuth } from '../framework/store/auth';
-
-const { logout } = useAuth();
-const { isAdmin } = storeToRefs(useAuth());
-const router = useRouter();
+import { RouterLink } from 'vue-router';
 
 const drawer = ref(false);
 
@@ -17,15 +10,6 @@ function closeDrawer() {
 
 function openDrawer() {
     drawer.value = true;
-}
-
-async function Logout() {
-    closeDrawer();
-    const response = await http.delete('/logout');
-    if (response.status == 200) {
-        logout();
-        router.push('/');
-    }
 }
 </script>
 
@@ -89,14 +73,6 @@ async function Logout() {
                                 >Dashboard</ui-item-text-content
                             >
                         </RouterLink>
-                    </ui-item>
-                </ui-list>
-                <ui-list v-if="isAdmin">
-                    <ui-item @click="Logout">
-                        <ui-item-first-content>
-                            <ui-icon>logout</ui-icon>
-                        </ui-item-first-content>
-                        <ui-item-text-content>Logout</ui-item-text-content>
                     </ui-item>
                 </ui-list>
             </ui-drawer-content>

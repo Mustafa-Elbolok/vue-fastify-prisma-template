@@ -20,7 +20,6 @@ const formbody_1 = __importDefault(require("@fastify/formbody"));
 const cors_1 = __importDefault(require("@fastify/cors"));
 const helmet_1 = __importDefault(require("@fastify/helmet"));
 const cookie_1 = __importDefault(require("@fastify/cookie"));
-const jwt_1 = __importDefault(require("@fastify/jwt"));
 const middie_1 = __importDefault(require("@fastify/middie"));
 const pino_1 = __importDefault(require("pino"));
 const fastify_1 = __importDefault(require("fastify"));
@@ -58,13 +57,6 @@ class App {
         app.register(cors_1.default, {
             origin: (origin, cb) => cb(null, (0, isAllowedOrigin_1.default)(origin !== null && origin !== void 0 ? origin : '')),
             credentials: true,
-        });
-        app.register(jwt_1.default, {
-            secret: process.env.JWT_SECRET,
-            cookie: {
-                cookieName: 'ST',
-                signed: true,
-            },
         });
         app.register(cookie_1.default, {
             secret: process.env.COOKIE_SECRET,
